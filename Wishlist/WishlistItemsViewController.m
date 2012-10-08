@@ -10,4 +10,13 @@
 
 @implementation WishlistItemsViewController
 
+-(id)init {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    return self;
+}
+
+-(id)initWithStyle:(UITableViewStyle)style {
+    return [self init];
+}
+
 @end

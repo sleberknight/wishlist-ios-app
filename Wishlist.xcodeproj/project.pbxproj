@@ -16,6 +16,8 @@
 		6B87CC6A16233C2400318817 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B87CC6916233C2400318817 /* Default.png */; };
 		6B87CC6C16233C2400318817 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B87CC6B16233C2400318817 /* Default@2x.png */; };
 		6B87CC6E16233C2400318817 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B87CC6D16233C2400318817 /* Default-568h@2x.png */; };
+		6B87CC7616233D0900318817 /* WishlistItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87CC7516233D0900318817 /* WishlistItemsViewController.m */; };
+		6B87CC7916233F1200318817 /* WLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87CC7816233F1200318817 /* WLItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,10 @@
 		6B87CC6916233C2400318817 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6B87CC6B16233C2400318817 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6B87CC6D16233C2400318817 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		6B87CC7416233D0900318817 /* WishlistItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishlistItemsViewController.h; sourceTree = "<group>"; };
+		6B87CC7516233D0900318817 /* WishlistItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishlistItemsViewController.m; sourceTree = "<group>"; };
+		6B87CC7716233F1200318817 /* WLItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLItem.h; sourceTree = "<group>"; };
+		6B87CC7816233F1200318817 /* WLItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,10 @@
 		6B87CC5D16233C2400318817 /* Wishlist */ = {
 			isa = PBXGroup;
 			children = (
+				6B87CC7716233F1200318817 /* WLItem.h */,
+				6B87CC7816233F1200318817 /* WLItem.m */,
+				6B87CC7416233D0900318817 /* WishlistItemsViewController.h */,
+				6B87CC7516233D0900318817 /* WishlistItemsViewController.m */,
 				6B87CC6616233C2400318817 /* WLAppDelegate.h */,
 				6B87CC6716233C2400318817 /* WLAppDelegate.m */,
 				6B87CC5E16233C2400318817 /* Supporting Files */,
@@ -167,6 +177,8 @@
 			files = (
 				6B87CC6416233C2400318817 /* main.m in Sources */,
 				6B87CC6816233C2400318817 /* WLAppDelegate.m in Sources */,
+				6B87CC7616233D0900318817 /* WishlistItemsViewController.m in Sources */,
+				6B87CC7916233F1200318817 /* WLItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WishlistItemsViewController : NSObject
+@interface WishlistItemsViewController : UITableViewController
 
 @end

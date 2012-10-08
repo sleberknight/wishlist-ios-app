@@ -10,4 +10,23 @@
 
 @interface WLItem : NSObject
 
++(id)randomItem;
+
+-(id)initWithItemName:(NSString *)name;
+
+-(id)initWithItemName:(NSString *)name
+             occasion:(NSString *)occasion
+                store:(NSString *)store
+                price:(int)price;
+
+@property (nonatomic, strong) WLItem *containedItem;
+@property (nonatomic, weak) WLItem *container;
+
+@property (nonatomic, copy) NSString *itemName;
+@property (nonatomic, copy) NSString *occasion;
+@property (nonatomic, copy) NSString *store;
+@property (nonatomic, assign) int price;
+@property (readonly, nonatomic, copy) NSDate *dateCreated;
+@property (readonly, nonatomic, copy) NSDate *dateModified;
+
 @end
