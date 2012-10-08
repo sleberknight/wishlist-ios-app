@@ -80,4 +80,9 @@
     [_item setPrice:[[_priceField text] intValue]];
 }
 
+-(void)setItem:(WLItem *)item {
+    _item = item;
+    [[self navigationItem] setTitle:[_item itemName]];
+}
+
 @end

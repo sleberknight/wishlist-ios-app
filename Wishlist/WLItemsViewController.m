@@ -15,11 +15,8 @@
 -(id)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self ) {
-        // Temporary to get some items
-        for (int i = 0; i < 5; i++) {
-            [[WLItemStore defaultStore] createItem];
-        }
-        NSLog(@"Created %d test items", [[[WLItemStore defaultStore] allItems] count]);
+        UINavigationItem *navItem = [self navigationItem];
+        [navItem setTitle:@"Wishlist"];
     }
     return self;
 }
