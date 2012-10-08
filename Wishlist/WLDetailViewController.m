@@ -14,4 +14,9 @@
 
 @implementation WLDetailViewController
 
+-(void)viewDidLoad {
+    [super viewDidLoad];
+    [[self view] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+}
+
 @end

@@ -10,4 +10,12 @@
 
 @interface WLDetailViewController : UIViewController
 
+// Outlets
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UITextField *occasionField;
+@property (weak, nonatomic) IBOutlet UITextField *storeField;
+@property (weak, nonatomic) IBOutlet UITextField *priceField;
+@property (weak, nonatomic) IBOutlet UILabel *dateMetadataLabel;
+
+
 @end
