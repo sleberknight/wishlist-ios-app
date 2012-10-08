@@ -7,6 +7,7 @@
 //
 
 #import "WLDetailViewController.h"
+#import "WLImageStore.h"
 
 @interface WLDetailViewController ()
 
@@ -22,6 +23,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    // Populate fields from item
     [_nameField setText:[_item itemName]];
     [_occasionField setText:[_item occasion]];
     [_storeField setText:[_item store]];
@@ -33,6 +35,14 @@
     [self addTextChangedNotification:_occasionField];
     [self addTextChangedNotification:_storeField];
     [self addTextChangedNotification:_priceField];
+
+    // Set the image
+    NSString *imageKey = [_item imageKey];
+    UIImage *image = nil;
+    if (imageKey) {
+        image = [[WLImageStore defaultStore] imageForKey:imageKey];
+    }
+    [_imageView setImage:image];
 }
 
 -(void)addTextChangedNotification:(UITextField *)textField {
@@ -105,9 +115,34 @@
 #pragma mark Image Picker Delegate methods
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    // Get selected image and update the image view
+
+    // If item being edited has an image already, remove it from the item store
+    NSString *oldImageKey = [_item imageKey];
+    if (oldImageKey) {
+        [[WLImageStore defaultStore] deleteImageForKey:oldImageKey];
+    }
+
+    // Grab the picked image
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [_imageView setImage:image];
+
+    // Create a new unique ID
+    CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
+
+    // Create a string reference from the UUID
+    CFStringRef newUniqueIDString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
+
+    // Cast the string reference to an NSString (toll-free bridged)
+    NSString *key = [NSString stringWithFormat:@"img-%@", (__bridge NSString *)newUniqueIDString];
+
+    // Store the image key in the item
+    [_item setImageKey:key];
+
+    // Store the image
+    [[WLImageStore defaultStore] setImage:image forKey:[_item imageKey]];
+
+    // Release the Core Foundation objects
+    CFRelease(newUniqueIDString);
+    CFRelease(newUniqueID);
 
     [self dismissViewControllerAnimated:YES completion:nil];
 }
