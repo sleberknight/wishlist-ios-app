@@ -7,7 +7,7 @@
 //
 
 #import "WLAppDelegate.h"
-#import "WishlistItemsViewController.h"
+#import "WLItemsViewController.h"
 #import "WLItem.h"
 
 @implementation WLAppDelegate
@@ -16,7 +16,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    WishlistItemsViewController *itemsViewController = [[WishlistItemsViewController alloc] init];
+    WLItemsViewController *itemsViewController = [[WLItemsViewController alloc] init];
 
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:itemsViewController];

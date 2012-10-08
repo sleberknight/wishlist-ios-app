@@ -1,5 +1,5 @@
 //
-//  WishlistItemsViewController.h
+//  WLItemsViewController.h
 //  Wishlist
 //
 //  Created by Scott Leberknight on 10/8/12.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WishlistItemsViewController : UITableViewController
+@interface WLItemsViewController : UITableViewController
 {
     IBOutlet UIView *headerView;
 }
