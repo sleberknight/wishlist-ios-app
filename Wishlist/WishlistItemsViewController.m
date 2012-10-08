@@ -27,4 +27,35 @@
     return [self init];
 }
 
+#pragma mark Table View Data Source methods
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[[WLItemStore defaultStore] allItems] count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView
+        cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    // Check for a reusable cell first
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+
+    // If there isn't a reusable cell, then create one
+    if (!cell) {
+        NSLog(@"Creating new UITableViewCell");
+        cell = [[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:@"UITableViewCell"];
+    }
+
+    // Set text on cell
+    WLItem *item = [[[WLItemStore defaultStore] allItems] objectAtIndex:[indexPath row]];
+    [[cell textLabel] setText:[item description]];
+
+    return cell;
+}
+
 @end
