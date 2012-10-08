@@ -7,6 +7,7 @@
 //
 
 #import "WLItemsViewController.h"
+#import "WLDetailViewController.h"
 #import "WLItemStore.h"
 
 @implementation WLItemsViewController
@@ -120,6 +121,12 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     // Determine height of header view from height of view in HeaderView XIB file
     return [[self headerView] bounds].size.height;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    WLDetailViewController *detailViewController = [[WLDetailViewController alloc] init];
+
+    [[self navigationController] pushViewController:detailViewController animated:YES];
 }
 
 @end
