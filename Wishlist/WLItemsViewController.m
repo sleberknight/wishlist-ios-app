@@ -17,6 +17,15 @@
     if (self ) {
         UINavigationItem *navItem = [self navigationItem];
         [navItem setTitle:@"Wishlist"];
+
+        UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc]
+                                          initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                          target:self
+                                          action:@selector(addNewItem:)];
+        [[self navigationItem] setRightBarButtonItem:addButtonItem];
+
+        // Calling editButtonItem sets up editing for the table view
+        [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
     }
     return self;
 }
