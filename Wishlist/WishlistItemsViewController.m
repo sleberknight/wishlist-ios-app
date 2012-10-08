@@ -27,6 +27,32 @@
     return [self init];
 }
 
+-(UIView *)headerView {
+    if (!headerView) {
+        [[NSBundle mainBundle] loadNibNamed:@"HeaderView" owner:self options:nil];
+    }
+
+    return headerView;
+}
+
+-(IBAction)addNewItem:(id)sender {
+
+}
+
+-(IBAction)toggleEditingMode:(id)sender;{
+    if ([self isEditing]) {
+        // Turn editing mode off
+        [sender setTitle:@"Edit" forState:UIControlStateNormal];
+        [self setEditing:NO animated:YES];
+    }
+    else {
+        // Turn editing mode on
+        [sender setTitle:@"Done" forState:UIControlStateNormal];
+        [self setEditing:YES animated:YES];
+    }
+}
+
+
 #pragma mark Table View Data Source methods
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -56,6 +82,17 @@
     [[cell textLabel] setText:[item description]];
 
     return cell;
+}
+
+#pragma mark Table View Delegate methods
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [self headerView];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    // Determine height of header view from height of view in HeaderView XIB file
+    return [[self headerView] bounds].size.height;
 }
 
 @end
