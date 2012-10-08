@@ -17,7 +17,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     WishlistItemsViewController *itemsViewController = [[WishlistItemsViewController alloc] init];
-    self.window.rootViewController = itemsViewController;
+
+    UINavigationController *navController = [[UINavigationController alloc]
+                                             initWithRootViewController:itemsViewController];
+    self.window.rootViewController = navController;
 
     // Test creating random item
     WLItem *item = [WLItem randomItem];
