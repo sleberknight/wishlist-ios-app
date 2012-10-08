@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WLItem.h"
 
-@interface WLDetailViewController : UIViewController <UITextFieldDelegate>
+@interface WLDetailViewController : UIViewController <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
@@ -17,7 +17,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *storeField;
 @property (weak, nonatomic) IBOutlet UITextField *priceField;
 @property (weak, nonatomic) IBOutlet UILabel *dateMetadataLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (nonatomic, strong) WLItem *item;
+
+// Actions
+- (IBAction)takePicture:(id)sender;
 
 @end

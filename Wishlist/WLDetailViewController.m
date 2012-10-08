@@ -85,6 +85,37 @@
     [[self navigationItem] setTitle:[_item itemName]];
 }
 
+- (IBAction)takePicture:(id)sender {
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+
+    // If device has camera take a picture, otherwise select from photo library
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+    }
+    else {
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    }
+
+    // Set ourself as the image picker's delegate so we can respond when user chooses a photo or cancels
+    [imagePicker setDelegate:self];
+
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+#pragma mark Image Picker Delegate methods
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    // Get selected image and update the image view
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [_imageView setImage:image];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark Text Field Delegate methods
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
