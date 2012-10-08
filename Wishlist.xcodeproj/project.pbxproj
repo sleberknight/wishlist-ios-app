@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B60DBAA16238286002366AE /* WLImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B60DBA916238286002366AE /* WLImageStore.m */; };
 		6B87CC5816233C2400318817 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B87CC5716233C2400318817 /* UIKit.framework */; };
 		6B87CC5A16233C2400318817 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B87CC5916233C2400318817 /* Foundation.framework */; };
 		6B87CC5C16233C2400318817 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B87CC5B16233C2400318817 /* CoreGraphics.framework */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B60DBA816238286002366AE /* WLImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLImageStore.h; sourceTree = "<group>"; };
+		6B60DBA916238286002366AE /* WLImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLImageStore.m; sourceTree = "<group>"; };
 		6B87CC5316233C2400318817 /* Wishlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wishlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B87CC5716233C2400318817 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6B87CC5916233C2400318817 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -96,6 +99,8 @@
 				6B87CC7816233F1200318817 /* WLItem.m */,
 				6B87CC7E1623496300318817 /* WLItemStore.h */,
 				6B87CC7F1623496300318817 /* WLItemStore.m */,
+				6B60DBA816238286002366AE /* WLImageStore.h */,
+				6B60DBA916238286002366AE /* WLImageStore.m */,
 				6B87CC7416233D0900318817 /* WLItemsViewController.h */,
 				6B87CC7516233D0900318817 /* WLItemsViewController.m */,
 				6B87CC6616233C2400318817 /* WLAppDelegate.h */,
@@ -195,6 +200,7 @@
 				6B87CC7916233F1200318817 /* WLItem.m in Sources */,
 				6B87CC801623496300318817 /* WLItemStore.m in Sources */,
 				6B87CC8A1623598600318817 /* WLDetailViewController.m in Sources */,
+				6B60DBAA16238286002366AE /* WLImageStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
