@@ -23,5 +23,6 @@
 
 // Actions
 - (IBAction)takePicture:(id)sender;
+- (IBAction)backgroundTapped:(id)sender;
 
 @end

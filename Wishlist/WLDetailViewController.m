@@ -112,6 +112,12 @@
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
+// When the user touches anywhere on the view while editing, causes the view or a text field
+// being edited to resign as first responder, which dismisses the keyboard
+- (IBAction)backgroundTapped:(id)sender {
+    [[self view] endEditing:YES];
+}
+
 #pragma mark Image Picker Delegate methods
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
