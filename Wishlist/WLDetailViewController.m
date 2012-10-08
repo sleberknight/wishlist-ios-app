@@ -104,6 +104,13 @@
 }
 
 - (IBAction)takePicture:(id)sender {
+
+    if ([_imagePickerPopover isPopoverVisible]) {
+        [_imagePickerPopover dismissPopoverAnimated:YES];
+        _imagePickerPopover = nil;
+        return;
+    }
+
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 
     // If device has camera take a picture, otherwise select from photo library
@@ -117,13 +124,28 @@
     // Set ourself as the image picker's delegate so we can respond when user chooses a photo or cancels
     [imagePicker setDelegate:self];
 
-    [self presentViewController:imagePicker animated:YES completion:nil];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        _imagePickerPopover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+        [_imagePickerPopover setDelegate:self];
+        [_imagePickerPopover presentPopoverFromBarButtonItem:sender
+                                    permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                    animated:YES];
+    }
+    else {
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
 }
 
 // When the user touches anywhere on the view while editing, causes the view or a text field
 // being edited to resign as first responder, which dismisses the keyboard
 - (IBAction)backgroundTapped:(id)sender {
     [[self view] endEditing:YES];
+}
+
+#pragma mark Popover Controller Delegate methods
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+    _imagePickerPopover = nil;
 }
 
 #pragma mark Image Picker Delegate methods
@@ -158,7 +180,16 @@
     CFRelease(newUniqueIDString);
     CFRelease(newUniqueID);
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        // Need to set image here since the detail view is not going to reload like it does
+        // when the image picker controller is modal (like with iPhone)
+        [_imageView setImage:image];
+        [_imagePickerPopover dismissPopoverAnimated:YES];
+        _imagePickerPopover = nil;
+    }
+    else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

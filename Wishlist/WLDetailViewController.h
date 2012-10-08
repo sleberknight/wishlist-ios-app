@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WLItem.h"
 
-@interface WLDetailViewController : UIViewController <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface WLDetailViewController : UIViewController <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
@@ -21,6 +21,7 @@
 
 // Non-outlet properties
 @property (nonatomic, strong) WLItem *item;
+@property UIPopoverController *imagePickerPopover;
 
 // Actions
 - (IBAction)takePicture:(id)sender;
