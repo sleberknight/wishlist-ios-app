@@ -105,6 +105,12 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+     toIndexPath:(NSIndexPath *)destinationIndexPath {
+
+    [[WLItemStore defaultStore] moveItemAtIndex:[sourceIndexPath row] toIndex:[destinationIndexPath row]];
+}
+
 #pragma mark Table View Delegate methods
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

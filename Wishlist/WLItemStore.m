@@ -47,4 +47,18 @@
     [_allItems removeObjectIdenticalTo:item];
 }
 
+-(void)moveItemAtIndex:(int)from toIndex:(int)to {
+    if (from == to) {
+        return;
+    }
+
+    WLItem *itemBeingMoved = [_allItems objectAtIndex:from];
+
+    // Remove item from array
+    [_allItems removeObjectAtIndex:from];
+
+    // Insert item into new position
+    [_allItems insertObject:itemBeingMoved atIndex:to];
+}
+
 @end

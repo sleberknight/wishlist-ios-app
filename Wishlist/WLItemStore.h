@@ -16,5 +16,6 @@
 -(NSArray *)allItems;
 -(WLItem *)createItem;
 -(void)removeItem:(WLItem *)item;
+-(void)moveItemAtIndex:(int)from toIndex:(int)to;
 
 @end
