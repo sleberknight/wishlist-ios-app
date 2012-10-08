@@ -91,6 +91,20 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Remove item from store
+        WLItemStore *store = [WLItemStore defaultStore];
+        NSArray *items = [store allItems];
+        WLItem *item = [items objectAtIndex:[indexPath row]];
+        [store removeItem:item];
+
+        // Remove item from table view
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
 #pragma mark Table View Delegate methods
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

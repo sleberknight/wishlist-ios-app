@@ -43,4 +43,8 @@
     return item;
 }
 
+-(void)removeItem:(WLItem *)item {
+    [_allItems removeObjectIdenticalTo:item];
+}
+
 @end

@@ -15,5 +15,6 @@
 
 -(NSArray *)allItems;
 -(WLItem *)createItem;
+-(void)removeItem:(WLItem *)item;
 
 @end
