@@ -36,7 +36,14 @@
 }
 
 -(IBAction)addNewItem:(id)sender {
+    WLItem *newItem = [[WLItemStore defaultStore] createItem];
 
+    int lastRow = [[[WLItemStore defaultStore] allItems] indexOfObject:newItem];
+
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lastRow inSection:0];
+
+    [[self tableView] insertRowsAtIndexPaths:@[indexPath]
+                            withRowAnimation:UITableViewRowAnimationTop];
 }
 
 -(IBAction)toggleEditingMode:(id)sender;{
