@@ -28,6 +28,11 @@
     return [self init];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[self tableView] reloadData];
+}
+
 -(UIView *)headerView {
     if (!headerView) {
         [[NSBundle mainBundle] loadNibNamed:@"HeaderView" owner:self options:nil];
@@ -125,6 +130,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     WLDetailViewController *detailViewController = [[WLDetailViewController alloc] init];
+
+    NSArray *items = [[WLItemStore defaultStore] allItems];
+    WLItem *selectedItem = [items objectAtIndex:[indexPath row]];
+
+    // Ensure detail view controller has a pointer to the selected item
+    [detailViewController setItem:selectedItem];
 
     [[self navigationController] pushViewController:detailViewController animated:YES];
 }

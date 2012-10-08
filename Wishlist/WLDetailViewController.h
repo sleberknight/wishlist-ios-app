@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WLItem.h"
 
-@interface WLDetailViewController : UIViewController
+@interface WLDetailViewController : UIViewController <UITextFieldDelegate>
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
@@ -17,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *priceField;
 @property (weak, nonatomic) IBOutlet UILabel *dateMetadataLabel;
 
+@property (nonatomic, strong) WLItem *item;
 
 @end

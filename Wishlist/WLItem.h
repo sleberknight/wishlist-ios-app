@@ -27,6 +27,6 @@
 @property (nonatomic, copy) NSString *store;
 @property (nonatomic, assign) int price;
 @property (readonly, nonatomic, copy) NSDate *dateCreated;
-@property (readonly, nonatomic, copy) NSDate *dateModified;
+@property (nonatomic, copy) NSDate *dateModified;
 
 @end
