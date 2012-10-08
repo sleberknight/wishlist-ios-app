@@ -19,7 +19,6 @@
 		6B87CC7616233D0900318817 /* WLItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87CC7516233D0900318817 /* WLItemsViewController.m */; };
 		6B87CC7916233F1200318817 /* WLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87CC7816233F1200318817 /* WLItem.m */; };
 		6B87CC801623496300318817 /* WLItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87CC7F1623496300318817 /* WLItemStore.m */; };
-		6B87CC86162350CA00318817 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B87CC85162350C900318817 /* HeaderView.xib */; };
 		6B87CC8A1623598600318817 /* WLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87CC881623598600318817 /* WLDetailViewController.m */; };
 		6B87CC8B1623598600318817 /* WLDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B87CC891623598600318817 /* WLDetailViewController.xib */; };
 /* End PBXBuildFile section */
@@ -44,7 +43,6 @@
 		6B87CC7816233F1200318817 /* WLItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLItem.m; sourceTree = "<group>"; };
 		6B87CC7E1623496300318817 /* WLItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLItemStore.h; sourceTree = "<group>"; };
 		6B87CC7F1623496300318817 /* WLItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLItemStore.m; sourceTree = "<group>"; };
-		6B87CC85162350C900318817 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		6B87CC871623598600318817 /* WLDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLDetailViewController.h; sourceTree = "<group>"; };
 		6B87CC881623598600318817 /* WLDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLDetailViewController.m; sourceTree = "<group>"; };
 		6B87CC891623598600318817 /* WLDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WLDetailViewController.xib; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 				6B87CC7F1623496300318817 /* WLItemStore.m */,
 				6B87CC7416233D0900318817 /* WLItemsViewController.h */,
 				6B87CC7516233D0900318817 /* WLItemsViewController.m */,
-				6B87CC85162350C900318817 /* HeaderView.xib */,
 				6B87CC6616233C2400318817 /* WLAppDelegate.h */,
 				6B87CC6716233C2400318817 /* WLAppDelegate.m */,
 				6B87CC871623598600318817 /* WLDetailViewController.h */,
@@ -181,7 +178,6 @@
 				6B87CC6A16233C2400318817 /* Default.png in Resources */,
 				6B87CC6C16233C2400318817 /* Default@2x.png in Resources */,
 				6B87CC6E16233C2400318817 /* Default-568h@2x.png in Resources */,
-				6B87CC86162350CA00318817 /* HeaderView.xib in Resources */,
 				6B87CC8B1623598600318817 /* WLDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +303,7 @@
 				6B87CC7316233C2400318817 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
