@@ -35,11 +35,13 @@
 }
 
 -(NSString *)description {
-    NSString *desc = [[NSString alloc] initWithFormat:@"%@ for %@, at %@, price $%d",
+    NSString *desc = [[NSString alloc] initWithFormat:@"%@ for %@, at %@, price $%d, created %@, modified %@",
                       _itemName,
                       _occasion,
                       _store,
-                      _price];
+                      _price,
+                      _dateCreated,
+                      _dateModified];
     return desc;
 }
 
