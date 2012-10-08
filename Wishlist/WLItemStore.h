@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WLItem.h"
 
 @interface WLItemStore : NSObject
+
++(WLItemStore *)defaultStore;
+
+-(NSArray *)allItems;
+-(WLItem *)createItem;
 
 @end
