@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateMetadataLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
+// Non-outlet properties
 @property (nonatomic, strong) WLItem *item;
 
 // Actions
