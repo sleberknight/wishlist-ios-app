@@ -85,4 +85,11 @@
     [[self navigationItem] setTitle:[_item itemName]];
 }
 
+#pragma mark Text Field Delegate methods
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 @end
