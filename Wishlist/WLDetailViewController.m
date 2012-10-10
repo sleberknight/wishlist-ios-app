@@ -8,12 +8,53 @@
 
 #import "WLDetailViewController.h"
 #import "WLImageStore.h"
+#import "WLItemStore.h"
 
 @interface WLDetailViewController ()
+
+@property (nonatomic, assign) BOOL isNewItem;
 
 @end
 
 @implementation WLDetailViewController
+
+-(id)initForNewItem:(BOOL)isNew {
+    NSLog(@"%@, isNew: %u", NSStringFromSelector(_cmd), isNew);
+
+    self = [super initWithNibName:@"WLDetailViewController" bundle:nil];
+
+    if (self && isNew) {
+        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+        [[self navigationItem] setRightBarButtonItem:doneItem];
+
+        UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+        [[self navigationItem] setLeftBarButtonItem:cancelItem];
+
+        // Set whether this is for a new item
+        _isNewItem = isNew;
+    }
+
+    return self;
+}
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    @throw [NSException exceptionWithName:@"Wrong initializer"
+                                   reason:@"Use initForNewItem"
+                                 userInfo:nil];
+    return nil;
+}
+
+-(void)done:(id)sender {
+    // Note that we only dismiss here; we save the item details in viewWillDisappear:animated:
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)cancel:(id)sender {
+    // User cancelled so remove item from the store
+    [[WLItemStore defaultStore] removeItem:_item];
+
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+}
 
 -(void)viewDidLoad {
     [super viewDidLoad];
@@ -64,8 +105,11 @@
 }
 
 -(void)updateDataMetadataForNewModification {
-    [_item setDateModified:[[NSDate alloc] init]];
-    [_dateMetadataLabel setText:[self dateMetadataText]];
+    if (!_isNewItem) {
+        // Only ever update modified date when editing existing items
+        [_item setDateModified:[[NSDate alloc] init]];
+        [_dateMetadataLabel setText:[self dateMetadataText]];
+    }
 }
 
 -(NSString *)dateMetadataText {

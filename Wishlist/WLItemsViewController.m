@@ -42,12 +42,12 @@
 -(IBAction)addNewItem:(id)sender {
     WLItem *newItem = [[WLItemStore defaultStore] createItem];
 
-    int lastRow = [[[WLItemStore defaultStore] allItems] indexOfObject:newItem];
+    WLDetailViewController *detailViewController = [[WLDetailViewController alloc] initForNewItem:YES];
+    [detailViewController setItem:newItem];
 
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lastRow inSection:0];
-
-    [[self tableView] insertRowsAtIndexPaths:@[indexPath]
-                            withRowAnimation:UITableViewRowAnimationTop];
+    UINavigationController *navController = [[UINavigationController alloc]
+                                             initWithRootViewController:detailViewController];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark Table View Data Source methods
@@ -104,7 +104,7 @@
 #pragma mark Table View Delegate methods
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    WLDetailViewController *detailViewController = [[WLDetailViewController alloc] init];
+    WLDetailViewController *detailViewController = [[WLDetailViewController alloc] initForNewItem:NO];
 
     NSArray *items = [[WLItemStore defaultStore] allItems];
     WLItem *selectedItem = [items objectAtIndex:[indexPath row]];

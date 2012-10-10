@@ -23,6 +23,9 @@
 @property (nonatomic, strong) WLItem *item;
 @property UIPopoverController *imagePickerPopover;
 
+// Methods
+-(id)initForNewItem:(BOOL)isNew;
+
 // Actions
 - (IBAction)takePicture:(id)sender;
 - (IBAction)backgroundTapped:(id)sender;
