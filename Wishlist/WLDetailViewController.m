@@ -60,6 +60,10 @@
 
 -(void)textChanged:(id)sender {
     // Text has changed in a field, so update the modified date and date metadata label
+    [self updateDataMetadataForNewModification];
+}
+
+-(void)updateDataMetadataForNewModification {
     [_item setDateModified:[[NSDate alloc] init]];
     [_dateMetadataLabel setText:[self dateMetadataText]];
 }
@@ -190,6 +194,8 @@
     else {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+
+    [self updateDataMetadataForNewModification];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
