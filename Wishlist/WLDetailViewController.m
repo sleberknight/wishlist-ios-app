@@ -46,7 +46,7 @@
 
 -(void)done:(id)sender {
     // Note that we only dismiss here; we save the item details in viewWillDisappear:animated:
-    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    [[self presentingViewController] dismissViewControllerAnimated:YES completion:_dismissBlock];
 }
 
 -(void)cancel:(id)sender {

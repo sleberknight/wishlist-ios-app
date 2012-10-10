@@ -21,7 +21,8 @@
 
 // Non-outlet properties
 @property (nonatomic, strong) WLItem *item;
-@property UIPopoverController *imagePickerPopover;
+@property (nonatomic, strong) UIPopoverController *imagePickerPopover;
+@property (nonatomic, copy) void (^dismissBlock)(void);
 
 // Methods
 -(id)initForNewItem:(BOOL)isNew;
