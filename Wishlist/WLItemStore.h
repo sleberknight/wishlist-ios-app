@@ -13,6 +13,8 @@
 
 +(WLItemStore *)defaultStore;
 
+-(NSString *)itemArchivePath;
+-(BOOL)saveChanges;
 -(NSArray *)allItems;
 -(WLItem *)createItem;
 -(void)removeItem:(WLItem *)item;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WLItem : NSObject
+@interface WLItem : NSObject <NSCoding>
 
 +(id)randomItem;
 

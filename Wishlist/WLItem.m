@@ -79,4 +79,30 @@
     return randomItem;
 }
 
+#pragma mark NSCoding protocol methods
+
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        _itemName = [aDecoder decodeObjectForKey:@"itemName"];
+        _occasion = [aDecoder decodeObjectForKey:@"occasion"];
+        _store = [aDecoder decodeObjectForKey:@"store"];
+        _price = [aDecoder decodeIntForKey:@"price"];
+        _imageKey = [aDecoder decodeObjectForKey:@"imageKey"];
+        _dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
+        _dateModified = [aDecoder decodeObjectForKey:@"dateModified"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:_itemName forKey:@"itemName"];
+    [aCoder encodeObject:_occasion forKey:@"occasion"];
+    [aCoder encodeObject:_store forKey:@"store"];
+    [aCoder encodeInt:_price forKey:@"price"];
+    [aCoder encodeObject:_imageKey forKey:@"imageKey"];
+    [aCoder encodeObject:_dateCreated forKey:@"dateCreated"];
+    [aCoder encodeObject:_dateModified forKey:@"dateModified"];
+}
+
 @end

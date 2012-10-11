@@ -8,6 +8,7 @@
 
 #import "WLItemStore.h"
 #import "WLItem.h"
+#import "WLImageStore.h"
 
 @interface WLItemStore()
 
@@ -30,13 +31,52 @@
 -(id)init {
     self = [super init];
     if (self) {
-        _allItems = [[NSMutableArray alloc] init];
+        NSString *path = [self itemArchivePath];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            NSLog(@"Loading items from existing archive %@", path);
+
+            _allItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+
+            if (!_allItems) {
+                NSLog(@"Error unarchiving items from archive %@", path);
+            }
+        }
+
+        if (!_allItems) {
+            NSLog(@"Initializing empty items array");
+            _allItems = [[NSMutableArray alloc] init];
+        }
     }
     return self;
 }
 
+-(NSString *)itemArchivePath {
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+    return [documentDirectory stringByAppendingPathComponent:@"items.archive"];
+}
+
+-(BOOL)saveChanges {
+    NSString *path = [self itemArchivePath];
+    NSData *archivedItems = [NSKeyedArchiver archivedDataWithRootObject:_allItems];
+    NSError * error;
+    [archivedItems writeToFile:path options:NSDataWritingAtomic error:&error];
+    if (error) {
+        NSLog(@"Error saving %d items to path %@: %@, %@, %@",
+              [_allItems count],
+              path,
+              [error localizedDescription],
+              [error localizedFailureReason],
+              [error localizedRecoverySuggestion]);
+        return NO;
+    }
+
+    NSLog(@"Saved %d items successfully to path %@", [_allItems count], path);
+    return YES;
+}
+
 -(WLItem *)createItem {
-    WLItem *item = [WLItem randomItem];
+    WLItem *item = [[WLItem alloc] initWithItemName:@""];
 
     [_allItems addObject:item];
 
@@ -44,6 +84,9 @@
 }
 
 -(void)removeItem:(WLItem *)item {
+    NSString *imageKey = [item imageKey];
+    [[WLImageStore defaultStore] deleteImageForKey:imageKey];
+
     [_allItems removeObjectIdenticalTo:item];
 }
 
