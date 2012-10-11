@@ -9,6 +9,7 @@
 #import "WLItemsViewController.h"
 #import "WLDetailViewController.h"
 #import "WLItemStore.h"
+#import "WLImageStore.h"
 
 @implementation WLItemsViewController
 
@@ -74,18 +75,59 @@
 
     // If there isn't a reusable cell, then create one
     if (!cell) {
-        NSLog(@"Creating new UITableViewCell");
         cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault
+                initWithStyle:UITableViewCellStyleSubtitle
                 reuseIdentifier:@"UITableViewCell"];
     }
 
-    // Set text on cell
+    // Set text and detail text labels on cell
     WLItem *item = [[[WLItemStore defaultStore] allItems] objectAtIndex:[indexPath row]];
-    [[cell textLabel] setText:[item description]];
+    [[cell textLabel] setText:[item itemName]];
+    NSString *details = [NSString stringWithFormat:@"%@, %@ ($%d)",
+                          [item occasion],
+                          [item store],
+                          [item price]];
+    [[cell detailTextLabel] setText:details];
+
+    // TODO: Use thumbnail images instead of resizing the real ones for each cell!!!
+    //
+    // Set image on cell; for now we are going to resize each one dynamically.
+    // They should be stored as thumbnails separately along with the original
+    // images and retrieved from the image store.
+    //
+    NSString *imageKey = [item imageKey];
+    UIImage *originalImage = [[WLImageStore defaultStore] imageForKey:imageKey];
+
+    // Resize the image
+    CGSize cellViewSize = CGSizeMake(36.0, 36.0);
+    CGRect cellViewRect = [self rectForImage:originalImage withSize:cellViewSize];
+    UIGraphicsBeginImageContext(cellViewSize);
+    [originalImage drawInRect:cellViewRect];
+    UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+
+    [[cell imageView] setImage:resizedImage];
 
     return cell;
 }
+
+-(CGRect)rectForImage:(UIImage *)image withSize:(CGSize)size {
+    CGRect imageRect = { {0.0, 0.0}, image.size };
+    CGFloat scale = 1.0;
+    if (CGRectGetWidth(imageRect) > CGRectGetHeight(imageRect)) {  // width > height
+        scale = size.width / CGRectGetWidth(imageRect);
+    }
+    else {  // width <= height
+        scale = size.height / CGRectGetHeight(imageRect);
+    }
+
+    CGRect rect = CGRectMake(0.0, 0.0, scale * CGRectGetWidth(imageRect), scale * CGRectGetHeight(imageRect));
+
+    rect.origin.x = (size.width - CGRectGetWidth(rect)) / 2.0;
+    rect.origin.y = (size.height - CGRectGetHeight(rect)) / 2.0;
+
+    return rect;
+}
+
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 
