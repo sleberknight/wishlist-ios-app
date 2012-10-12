@@ -26,6 +26,24 @@
     return defaultStore;
 }
 
++(CGRect)rectForImage:(UIImage *)image withSize:(CGSize)size {
+    CGRect imageRect = { {0.0, 0.0}, image.size };
+    CGFloat scale = 1.0;
+    if (CGRectGetWidth(imageRect) > CGRectGetHeight(imageRect)) {  // width > height
+        scale = size.width / CGRectGetWidth(imageRect);
+    }
+    else {  // width <= height
+        scale = size.height / CGRectGetHeight(imageRect);
+    }
+
+    CGRect rect = CGRectMake(0.0, 0.0, scale * CGRectGetWidth(imageRect), scale * CGRectGetHeight(imageRect));
+
+    rect.origin.x = (size.width - CGRectGetWidth(rect)) / 2.0;
+    rect.origin.y = (size.height - CGRectGetHeight(rect)) / 2.0;
+
+    return rect;
+}
+
 -(id)init {
     self = [super init];
     if (self) {

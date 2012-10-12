@@ -103,7 +103,7 @@
 
     // Resize the image
     CGSize cellViewSize = CGSizeMake(36.0, 36.0);
-    CGRect cellViewRect = [self rectForImage:originalImage withSize:cellViewSize];
+    CGRect cellViewRect = [WLImageStore rectForImage:originalImage withSize:cellViewSize];
     UIGraphicsBeginImageContext(cellViewSize);
     [originalImage drawInRect:cellViewRect];
     UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -112,25 +112,6 @@
 
     return cell;
 }
-
--(CGRect)rectForImage:(UIImage *)image withSize:(CGSize)size {
-    CGRect imageRect = { {0.0, 0.0}, image.size };
-    CGFloat scale = 1.0;
-    if (CGRectGetWidth(imageRect) > CGRectGetHeight(imageRect)) {  // width > height
-        scale = size.width / CGRectGetWidth(imageRect);
-    }
-    else {  // width <= height
-        scale = size.height / CGRectGetHeight(imageRect);
-    }
-
-    CGRect rect = CGRectMake(0.0, 0.0, scale * CGRectGetWidth(imageRect), scale * CGRectGetHeight(imageRect));
-
-    rect.origin.x = (size.width - CGRectGetWidth(rect)) / 2.0;
-    rect.origin.y = (size.height - CGRectGetHeight(rect)) / 2.0;
-
-    return rect;
-}
-
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 

@@ -9,6 +9,7 @@
 #import "WLDetailViewController.h"
 #import "WLImageStore.h"
 #import "WLItemStore.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface WLDetailViewController ()
 
@@ -82,27 +83,62 @@
     [_nameField setText:[_item itemName]];
     [_occasionField setText:[_item occasion]];
     [_storeField setText:[_item store]];
+    [self setPriceFieldText];
+    [_dateMetadataLabel setText:[self dateMetadataText]];
+
+    // Setup text changed notifications
+    [self addTextChangedNotification:_nameField];
+    [self addTextChangedNotification:_occasionField];
+    [self addTextChangedNotification:_storeField];
+    [self addTextChangedNotification:_priceField];
+
+    // Get image from store
+    NSString *imageKey = [_item imageKey];
+    UIImage *image = nil;
+    if (imageKey) {
+        image = [[WLImageStore defaultStore] imageForKey:imageKey];
+
+        UIImage *imageWithBorder = [self drawBorderAround:image];
+        [self addShadowToImageView];
+
+        [_imageView setImage:imageWithBorder];
+    }
+}
+
+-(void)setPriceFieldText {
     if ([_item price] == 0) {
         [_priceField setText:@""];
     }
     else {
         [_priceField setText:[NSString stringWithFormat:@"%d", [_item price]]];
     }
-    [_dateMetadataLabel setText:[self dateMetadataText]];
+}
 
-    // Setup text changed notifcations
-    [self addTextChangedNotification:_nameField];
-    [self addTextChangedNotification:_occasionField];
-    [self addTextChangedNotification:_storeField];
-    [self addTextChangedNotification:_priceField];
+-(UIImage *)drawBorderAround:(UIImage *)image {
+    CGSize imageSize = [image size];
+    CGRect imageRect = [WLImageStore rectForImage:image withSize:imageSize];
+    UIGraphicsBeginImageContext(imageSize);
+    [image drawInRect:imageRect];
 
-    // Set the image
-    NSString *imageKey = [_item imageKey];
-    UIImage *image = nil;
-    if (imageKey) {
-        image = [[WLImageStore defaultStore] imageForKey:imageKey];
-    }
-    [_imageView setImage:image];
+    CGFloat frameWidth = 2.0;
+    CGRect frameRect = CGRectInset(imageRect, frameWidth / 2.0, frameWidth / 2.0);
+    UIBezierPath *frame = [UIBezierPath bezierPathWithRect:frameRect];
+    [frame setLineWidth:frameWidth];
+    [[UIColor darkGrayColor] setStroke];
+    [frame stroke];
+
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return newImage;
+}
+
+-(void)addShadowToImageView {
+    CALayer *layer = [_imageView layer];
+    [layer setShadowRadius:5.0];
+    [layer setShadowColor:[[UIColor blackColor] CGColor]];
+    [layer setShadowOffset:CGSizeMake(8.0, 8.0)];
+    [layer setShadowOpacity:0.75];
 }
 
 -(void)addTextChangedNotification:(UITextField *)textField {

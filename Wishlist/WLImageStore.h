@@ -11,6 +11,7 @@
 @interface WLImageStore : NSObject
 
 +(WLImageStore *)defaultStore;
++(CGRect)rectForImage:(UIImage *)image withSize:(CGSize)size;
 
 -(NSString *)imagePathForKey:(NSString *)key;
 -(void)setImage:(UIImage *)img forKey:(NSString *)key;

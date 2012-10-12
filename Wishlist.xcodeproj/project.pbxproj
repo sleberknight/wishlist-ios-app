@@ -22,6 +22,7 @@
 		6B87CC801623496300318817 /* WLItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87CC7F1623496300318817 /* WLItemStore.m */; };
 		6B87CC8A1623598600318817 /* WLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87CC881623598600318817 /* WLDetailViewController.m */; };
 		6B87CC8B1623598600318817 /* WLDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B87CC891623598600318817 /* WLDetailViewController.xib */; };
+		6B89DC811627C12100CFF528 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B89DC801627C12100CFF528 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		6B87CC871623598600318817 /* WLDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLDetailViewController.h; sourceTree = "<group>"; };
 		6B87CC881623598600318817 /* WLDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLDetailViewController.m; sourceTree = "<group>"; };
 		6B87CC891623598600318817 /* WLDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WLDetailViewController.xib; sourceTree = "<group>"; };
+		6B89DC801627C12100CFF528 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B89DC811627C12100CFF528 /* QuartzCore.framework in Frameworks */,
 				6B87CC5816233C2400318817 /* UIKit.framework in Frameworks */,
 				6B87CC5A16233C2400318817 /* Foundation.framework in Frameworks */,
 				6B87CC5C16233C2400318817 /* CoreGraphics.framework in Frameworks */,
@@ -68,6 +71,7 @@
 		6B87CC4816233C2400318817 = {
 			isa = PBXGroup;
 			children = (
+				6B89DC801627C12100CFF528 /* QuartzCore.framework */,
 				6B87CC5D16233C2400318817 /* Wishlist */,
 				6B87CC5616233C2400318817 /* Frameworks */,
 				6B87CC5416233C2400318817 /* Products */,
