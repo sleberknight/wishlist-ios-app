@@ -59,14 +59,20 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
 
-    UIColor *bgColor;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        bgColor = [UIColor colorWithRed:0.875 green:0.88 blue:0.91 alpha:1];
+        // If on iPad set the background to a light gray to match the table view's background
+        UIColor *bgColor = [UIColor colorWithRed:0.875 green:0.88 blue:0.91 alpha:1];
+        [[self view] setBackgroundColor:bgColor];
     }
     else {
-        bgColor = [UIColor groupTableViewBackgroundColor];
+        // If on iPhone the groupTableViewBackgroundColor is deprecated and gives a white background,
+        // per http://stackoverflow.com/questions/12452810/is-grouptableviewbackgroundcolor-deprecated-on-ios-6
+        // The solution (read as "hack") is to create an empty table view and place it behind the content.
+        CGRect rect = [[self view] bounds];
+        UITableView *tv = [[UITableView alloc] initWithFrame:rect style:UITableViewStyleGrouped];
+        [[self view] addSubview:tv];
+        [[self view] sendSubviewToBack:tv];
     }
-    [[self view] setBackgroundColor:bgColor];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -76,7 +82,12 @@
     [_nameField setText:[_item itemName]];
     [_occasionField setText:[_item occasion]];
     [_storeField setText:[_item store]];
-    [_priceField setText:[NSString stringWithFormat:@"%d", [_item price]]];
+    if ([_item price] == 0) {
+        [_priceField setText:@""];
+    }
+    else {
+        [_priceField setText:[NSString stringWithFormat:@"%d", [_item price]]];
+    }
     [_dateMetadataLabel setText:[self dateMetadataText]];
 
     // Setup text changed notifcations
