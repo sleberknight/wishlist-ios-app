@@ -90,6 +90,9 @@
     [[cell detailTextLabel] setText:details];
 
     // TODO: Use thumbnail images instead of resizing the real ones for each cell!!!
+    //       The thumbnails should be created in the imagePickerController:didFinishPickingMediaWithInfo:
+    //       method in the WLDetailViewController and saved at that time via the WLImageStore alongside the
+    //       normal images.
     //
     // Set image on cell; for now we are going to resize each one dynamically.
     // They should be stored as thumbnails separately along with the original
