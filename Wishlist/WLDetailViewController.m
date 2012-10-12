@@ -69,6 +69,8 @@
         // If on iPhone the groupTableViewBackgroundColor is deprecated and gives a white background,
         // per http://stackoverflow.com/questions/12452810/is-grouptableviewbackgroundcolor-deprecated-on-ios-6
         // The solution (read as "hack") is to create an empty table view and place it behind the content.
+        // TODO This "solution" for background breaks the UIControl sending "touch up inside" action (i.e. to
+        //      the backgroundTapped: method in this class). Can that be fixed?
         CGRect rect = [[self view] bounds];
         UITableView *tv = [[UITableView alloc] initWithFrame:rect style:UITableViewStyleGrouped];
         [[self view] addSubview:tv];
