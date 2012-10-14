@@ -71,7 +71,6 @@
 		6B87CC4816233C2400318817 = {
 			isa = PBXGroup;
 			children = (
-				6B89DC801627C12100CFF528 /* QuartzCore.framework */,
 				6B87CC5D16233C2400318817 /* Wishlist */,
 				6B87CC5616233C2400318817 /* Frameworks */,
 				6B87CC5416233C2400318817 /* Products */,
@@ -92,6 +91,7 @@
 				6B87CC5716233C2400318817 /* UIKit.framework */,
 				6B87CC5916233C2400318817 /* Foundation.framework */,
 				6B87CC5B16233C2400318817 /* CoreGraphics.framework */,
+				6B89DC801627C12100CFF528 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
