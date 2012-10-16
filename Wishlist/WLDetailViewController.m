@@ -280,6 +280,7 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         // Need to set image here since the detail view is not going to reload like it does
         // when the image picker controller is modal (like with iPhone)
+        // TODO Add border and shadow around image for iPad here...
         [_imageView setImage:image];
         [_imagePickerPopover dismissPopoverAnimated:YES];
         _imagePickerPopover = nil;
