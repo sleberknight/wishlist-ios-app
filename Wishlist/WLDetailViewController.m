@@ -25,10 +25,16 @@
     self = [super initWithNibName:@"WLDetailViewController" bundle:nil];
 
     if (self && isNew) {
-        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+        UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
+                                     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                     target:self
+                                     action:@selector(done:)];
         [[self navigationItem] setRightBarButtonItem:doneItem];
 
-        UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+        UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                       target:self
+                                       action:@selector(cancel:)];
         [[self navigationItem] setLeftBarButtonItem:cancelItem];
 
         // Set whether this is for a new item
